@@ -51,6 +51,14 @@ public class Nodo implements Comparable<Nodo>{
     // Si son iguales devuelve 0, si el primero es menor devuelve -1, si el primero es mayor devuelve 1
     @Override
     public int compareTo(Nodo o) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        // SOLUCIÓN 4: Implementar la comparación por defecto basada en el costo 
+        // para evitar el UnsupportedOperationException.
+        if (this.costo < o.getCosto()) {
+            return -1;
+        }
+        if (this.costo > o.getCosto()) {
+            return 1;
+        }
+        return 0;
     }
 }

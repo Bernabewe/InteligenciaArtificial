@@ -47,7 +47,7 @@ public class ArbolDeBusqueda {
         if(raiz == null) return null;
 
         HashSet<String> visitados = new HashSet<>();
-        Queue<Nodo> cola = new PriorityQueue<>();
+        Queue<Nodo> cola = new PriorityQueue<>(new NodePriorityComparator());
 
         cola.add(raiz);
         visitados.add(raiz.estado);
@@ -64,6 +64,7 @@ public class ArbolDeBusqueda {
             for(Nodo s : sucesores) {
                 if(!visitados.contains(s.estado)) {
                     s.setNivel(actual.getNivel() + 1);
+                    s.setCosto(actual.getCosto() + 1);
                     cola.add(s);
                     visitados.add(s.estado);
                 }
