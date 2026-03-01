@@ -63,4 +63,50 @@ public class Puzzle8 {
         caracteres[j] = temp;
         return new String(caracteres);
     }
+
+    public static int calcularManhattan(String estadoActual, String estadoObjetivo) {
+        int distanciaTotal = 0;
+        for (int i = 0; i < estadoActual.length(); i++) {
+            char pieza = estadoActual.charAt(i);
+            if (pieza != ' ') { // No contamos el espacio vacio
+                int posActual = i;
+                int posObjetivo = estadoObjetivo.indexOf(pieza);
+                
+                // Convertimos posicion lineal a coordenadas (x, y)
+                int filaActual = posActual / 3;
+                int colActual = posActual % 3;
+                int filaObjetivo = posObjetivo / 3;
+                int colObjetivo = posObjetivo % 3;
+                
+                distanciaTotal += Math.abs(filaActual - filaObjetivo) + Math.abs(colActual - colObjetivo);
+            }
+        }
+        return distanciaTotal;
+    }
+
+    public static int heuristicaPersonalizada(String estadoActual, String estadoObjetivo) {
+        // Calcula la distancia de la posicion actual a la objetivo con el Teorema de Pitagoras
+        // Esta funcion es mas optimista, por lo que tiende equivocarse mas
+        double h = 0;
+        for (int i = 0; i < estadoActual.length(); i++) {
+            char pieza = estadoActual.charAt(i);
+            
+            if (pieza != ' ') {
+                int posActual = i;
+                int posObjetivo = estadoObjetivo.indexOf(pieza);
+                
+                // Coordenadas
+                int x1 = posActual % 3;
+                int y1 = posActual / 3;
+                int x2 = posObjetivo % 3;
+                int y2 = posObjetivo / 3;
+                
+                // Calculo Euclidiano: Raiz cuadrada de la suma de los cuadrados
+                // Esto es "relajar" el problema a un plano continuo
+                h += Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+            }
+        }
+        // Retornamos el entero para que sea compatible con tu estructura de costos
+        return (int) h;
+    }
 }

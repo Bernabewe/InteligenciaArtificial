@@ -4,6 +4,7 @@ public class Nodo implements Comparable<Nodo>{
     Nodo padre;
     int nivel;
     int costo;
+    int heuristica;
 
     public Nodo(String estado, Nodo padre){
         this.estado = estado;
@@ -30,6 +31,14 @@ public class Nodo implements Comparable<Nodo>{
         return costo;
     }
 
+    public int getHeuristica() { 
+        return heuristica; 
+    }
+
+    public int getF() {
+        return costo + heuristica;
+    }
+
     // SETTERS
 
     public void setEstado(String estado) {
@@ -48,10 +57,14 @@ public class Nodo implements Comparable<Nodo>{
         this.costo = costo;
     }
 
+    public void setHeuristica(int heuristica) { 
+        this.heuristica = heuristica; 
+    }
+
     // Si son iguales devuelve 0, si el primero es menor devuelve -1, si el primero es mayor devuelve 1
     @Override
     public int compareTo(Nodo o) {
-        // SOLUCIÓN 4: Implementar la comparación por defecto basada en el costo 
+        // Implementar la comparación por defecto basada en el costo 
         // para evitar el UnsupportedOperationException.
         if (this.costo < o.getCosto()) {
             return -1;
