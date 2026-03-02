@@ -1,3 +1,5 @@
+package puzzle8;
+
 import java.util.Comparator;
 
 public class NodePriorityComparator implements Comparator<Nodo> {

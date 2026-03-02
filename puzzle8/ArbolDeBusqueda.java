@@ -1,3 +1,5 @@
+package puzzle8;
+
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -124,7 +126,7 @@ public class ArbolDeBusqueda {
         reiniciarNodosExpandidos();
         if (raiz == null) return null;
 
-        // Usamos el comparador especial para A* que creamos antes
+        // Usamos el comparador especial para A*
         PriorityQueue<Nodo> cola = new PriorityQueue<>(new NodePriorityComparatorAStar());
         HashSet<String> visitados = new HashSet<>();
 

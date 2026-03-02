@@ -1,3 +1,5 @@
+package puzzle8;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,9 +19,9 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        /*
+        
         String estadoObjetivo = "12345678 ";
-        String estadoInicial = "4125 3786";
+        String estadoInicial = "123456 78";
         
         List<Metricas> resultadosTabla = new ArrayList<>();
 
@@ -40,8 +42,9 @@ public class Main {
 
         // --- TABLA COMPARATIVA FINAL ---
         imprimirTablaFinal(resultadosTabla);
-        */
+        
 
+        /*
         // 6 pasos, 14 pasos, 22 pasos
         String[] estadosIniciales = {"4125 3786", " 52743816", " 72456831"};
         String estadoObjetivo = "12345678 ";
@@ -55,16 +58,17 @@ public class Main {
             ejecutarAlgoritmo("A* Personalizada", estadosIniciales[i], estadoObjetivo, resultadosTabla);
             imprimirTablaFinal(resultadosTabla);
         }
+        */
     }
 
     public static void ejecutarAlgoritmo(String metodo, String inicio, String objetivo, List<Metricas> tabla) {
         Nodo nodoRaiz = new Nodo(inicio, null);
         ArbolDeBusqueda arbol = new ArbolDeBusqueda(nodoRaiz);
-        /*
+        
         System.out.println("\n" + "=".repeat(50));
         System.out.println("EJECUTANDO: " + metodo);
         System.out.println("=".repeat(50));
-        */
+        
         long startTime = System.currentTimeMillis();
         Nodo solucion = null;
 
@@ -90,9 +94,8 @@ public class Main {
         long tiempoTotal = endTime - startTime;
 
         // Imprimir el camino y detalles inmediatos
-        //////////// procesarResultado(solucion, tiempoTotal);
+        procesarResultado(solucion, tiempoTotal);
 
-        // Guardar en la lista para la tabla comparativa
         int pasos = (solucion != null) ? solucion.getNivel() : 0;
         tabla.add(new Metricas(metodo, arbol.getNodosExpandidos(), tiempoTotal, pasos));
     }
@@ -112,7 +115,7 @@ public class Main {
 
     public static void imprimirCamino(Nodo nodo) {
         if (nodo == null) return;
-        imprimirCamino(nodo.getPadre()); // Recursión para ir desde el inicio
+        imprimirCamino(nodo.getPadre());
         System.out.println("Paso " + nodo.getNivel() + ":");
         imprimirTablero(nodo.getEstado());
         System.out.println("-----------");

@@ -1,3 +1,5 @@
+package puzzle8;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,18 +97,15 @@ public class Puzzle8 {
                 int posActual = i;
                 int posObjetivo = estadoObjetivo.indexOf(pieza);
                 
-                // Coordenadas
                 int x1 = posActual % 3;
                 int y1 = posActual / 3;
                 int x2 = posObjetivo % 3;
                 int y2 = posObjetivo / 3;
                 
-                // Calculo Euclidiano: Raiz cuadrada de la suma de los cuadrados
-                // Esto es "relajar" el problema a un plano continuo
                 h += Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
             }
         }
-        // Retornamos el entero para que sea compatible con tu estructura de costos
+        // Retornamos el entero para que sea compatible con la estructura de costos
         return (int) h;
     }
 }

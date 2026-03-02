@@ -1,3 +1,4 @@
+package puzzle24;
 
 public class Nodo implements Comparable<Nodo>{
     String estado;
